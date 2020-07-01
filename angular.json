@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OBS"
+    }
+  },
+  "defaultProject": "OBS",
+  "cli": {
+    "analytics": false
+  }
 }
