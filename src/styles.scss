@@ -9,6 +9,9 @@ $success-color: #5cb85c;
 $update-color: #337ab7;
 $main-color: #f0ad4e;
 $danger-color: #d9534f;
+$stripe-color-title: #b6f3ce;
+$stripe-color-a: white;
+$stripe-color-b: #f0f6fd;
 
 .icon-success {
   color: $success-color;
@@ -24,4 +27,34 @@ $danger-color: #d9534f;
 
 .icon-edit {
   color: $main-color;
+}
+
+.vertical-alignment {
+  display: flex;
+  align-items: flex-end;
+}
+
+.vertical-alignment-div {
+  display: flex;
+  align-items: center;
+}
+
+.line-stripe-title {
+  background-color: $stripe-color-title;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 10px 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.line-stripe-a, .line-stripe-b {
+  padding: 10px 0;
+}
+
+.line-stripe-a {
+  background-color: $stripe-color-a;
+}
+
+.line-stripe-b {
+  background-color: $stripe-color-b;
 }

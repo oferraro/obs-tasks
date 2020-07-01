@@ -2,6 +2,13 @@
   font-weight: bold;
 }
 
+.action-line {
+  margin-top: 5px;
+  .buttons-container {
+    text-align: right;
+  }
+}
+
 .task-completed {
   color: green;
 }

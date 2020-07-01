@@ -57,4 +57,4 @@ Params: "id": <string>
 - Add search
 - Add sort
 - Add retry or Api errors management
-
+- Add Ngrx if project get bigger
