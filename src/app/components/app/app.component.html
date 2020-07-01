@@ -25,6 +25,8 @@
     </div>
   </div>
 
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+
   <div *ngFor="let task of tasks">
     {{task.description}}
     {{task.completed ? 'done' : 'pending'}}
