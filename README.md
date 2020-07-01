@@ -49,8 +49,6 @@ Delete DELETE: http://amimusa.xen.prgmr.com:3000/tasks/:id
 Params: "id": <string>
 
 ##Todo
-- Add bootstrap
-- Add delete confirmation
 
 ### nice to have
 - Add pagination
