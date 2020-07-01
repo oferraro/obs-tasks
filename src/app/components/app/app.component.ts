@@ -41,12 +41,14 @@ export class AppComponent implements OnInit {
     }
 
     fetchTasks() {
-        this.loading = true;
-        this.taskService.getTasks(this.owner).subscribe((tasks: Task[]) => {
-            this.tasks = tasks;
-            this.filteredTasks = tasks;
-            this.loading = false;
-        });
+        if (!this.loading) { // TODO: add some class to show button is disabled, probably some opacity
+            this.loading = true;
+            this.taskService.getTasks(this.owner).subscribe((tasks: Task[]) => {
+                this.tasks = tasks;
+                this.filteredTasks = tasks;
+                this.loading = false;
+            });
+        }
     }
 
     addEditTask() {
@@ -64,6 +66,7 @@ export class AppComponent implements OnInit {
     addTask() {
         this.taskService.addTask(this.owner, this.newTask).subscribe(() => {
             this.fetchTasks(); // using push the new task can be manually added but for been completely sure, could be better fetch them again
+            this.newTask = undefined;
         });
     }
 
@@ -76,6 +79,7 @@ export class AppComponent implements OnInit {
     deleteTask(task: Task) {
         this.taskService.deleteTask(task).subscribe(() => {
             this.fetchTasks();
+            this.newTask = undefined;
         });
     }
 
