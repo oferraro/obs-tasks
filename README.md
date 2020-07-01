@@ -25,3 +25,34 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Api reference
+
+Create POST: http://amimusa.xen.prgmr.com:3000/tasks/:owner
+Params: "owner": <integer>
+Body: {
+	"description": <string>,
+	"completed": <boolean>
+}
+
+Read GET:  http://amimusa.xen.prgmr.com:3000/tasks/:owner
+Params: "owner": <integer>
+
+Update PATCH:  http://amimusa.xen.prgmr.com:3000/tasks/:id
+Params: "id": <string>
+Body: {
+	"description": <string>,
+	"completed": <boolean>
+}
+
+Delete DELETE: http://amimusa.xen.prgmr.com:3000/tasks/:id
+Params: "id": <string>
+
+##Todo
+- Add bootstrap
+- Add delete confirmation
+
+### nice to have
+- Add pagination
+- Add search
+- Add sort

@@ -1,6 +1,35 @@
 
 <div class="content" role="main">
   <h3>Home</h3>
+
+  <div>
+    <form (submit)="addTask()">
+      <label for="task-description"></label>
+      <textarea [(ngModel)]="newTask.description" id="task-description" type="text" name="description"></textarea>
+      <label for="task-status">Completed</label>
+      <input id="task-status" type="checkbox" name="status" [(ngModel)]="newTask.completed" />
+      <input type="submit" value="Add" />
+    </form>
+  </div>
+
+  <div *ngIf="newTask.description.trim() !== ''">
+    New Task
+    <div>
+      Description: {{newTask.description}}
+      <div>
+        Status:
+          <span [ngClass]="newTask.completed ? 'task-completed' : 'task-pending'">
+            {{newTask.completed ? 'finished' : 'pending'}}
+          </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let task of tasks">
+    {{task.description}}
+    {{task.completed ? 'done' : 'pending'}}
+  </div>
+
 </div>
 
 <router-outlet></router-outlet>
