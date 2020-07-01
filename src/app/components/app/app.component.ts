@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
     owner: number = 111; // TODO: check if use and interceptor to manage this and if it should be in localStorage or somewhere else
     newTask: Task = emptyTask;
     tasksFilter: taskTypes = taskTypes.all;
+    loading: boolean = false;
 
     constructor(
         private taskService: TaskService
@@ -24,20 +25,43 @@ export class AppComponent implements OnInit {
     }
 
     fetchTasks() {
+        this.loading = true;
         this.taskService.getTasks(this.owner).subscribe((tasks: Task[]) => {
             this.tasks = tasks;
+            this.loading = false;
         });
+    }
+
+    addEditTask() {
+        if (this.newTask._id) {
+            this.editTask();
+        } else {
+            this.addTask();
+        }
     }
 
     addTask() {
         this.taskService.addTask(this.owner, this.newTask).subscribe((response: AddTaskResponse) => {
             this.fetchTasks(); // using push the new task can be manually added but for been completely sure, could be better fetch them again
-            console.log(response);
+        });
+    }
+
+    editTask() {
+        this.taskService.editTask(this.owner, this.newTask).subscribe((response: AddTaskResponse) => {
+            this.fetchTasks(); // using push the new task can be manually added but for been completely sure, could be better fetch them again
         })
-        console.log('add', this.newTask);
     }
 
     deleteTask() {
 
+    }
+
+    setCreatingTask() {
+        this.newTask = emptyTask;
+    }
+
+    setEditingTask(task: Task) {
+        this.newTask = task;
+        console.log(task);
     }
 }

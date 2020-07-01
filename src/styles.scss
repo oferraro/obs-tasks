@@ -1,4 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$app-color: #5bc0de;
+$success-color: #5cb85c;
+$update-color: #337ab7;
+$main-color: #f0ad4e;
+$danger-color: #d9534f;
+
+.icon-success {
+  color: $success-color;
+}
+
+.icon-update {
+  color: #337ab7;
+}
+
+.icon-danger {
+  color: $danger-color;
+}
+
+.icon-edit {
+  color: $main-color;
+}

@@ -56,3 +56,5 @@ Params: "id": <string>
 - Add pagination
 - Add search
 - Add sort
+- Add retry or Api errors management
+

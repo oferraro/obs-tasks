@@ -1,36 +1,65 @@
 
-<div class="content" role="main">
+<div class="container" role="main">
   <h3>Home</h3>
 
   <div>
-    <form (submit)="addTask()">
-      <label for="task-description"></label>
-      <textarea [(ngModel)]="newTask.description" id="task-description" type="text" name="description"></textarea>
-      <label for="task-status">Completed</label>
-      <input id="task-status" type="checkbox" name="status" [(ngModel)]="newTask.completed" />
-      <input type="submit" value="Add" />
+    <span class="material-icons icon-success" role="button" (click)="setCreatingTask()">post_add</span>
+    <span class="material-icons icon-update" role="button" (click)="fetchTasks()">
+      refresh
+    </span>
+  </div>
+
+  <div *ngIf="this.newTask">
+    <form (submit)="addEditTask()">
+      <label for="task-description">Description</label>
+
+      <input *ngIf="this.newTask._id" type="hidden" name="editing-task" [(ngModel)]="this.newTask._id" />
+
+      <textarea [(ngModel)]="newTask.description" class="form-control col-6" id="task-description" type="text" name="description"></textarea>
+      <label for="task-status" role="button">
+        <span [ngClass]="newTask.completed ? 'task-completed' : 'task-pending'">
+            {{newTask.completed ? 'finished' : 'pending'}} &nbsp;
+        </span>
+      </label>
+      <input [(ngModel)]="newTask.completed" id="task-status" type="checkbox" name="status" />
+      <div>
+        <input type="submit" value="{{this.newTask._id ? 'Edit' : 'Add'}}" class="btn btn-success" />
+      </div>
     </form>
   </div>
 
-  <div *ngIf="newTask.description.trim() !== ''">
-    New Task
-    <div>
-      Description: {{newTask.description}}
+  <hr />
+
+
+  <div *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <div *ngFor="let task of tasks">
+    <div class="row">
+      <div class="col-2">
+        <span class="material-icons icon-danger" role="button">delete</span>
+      </div>
       <div>
-        Status:
-          <span [ngClass]="newTask.completed ? 'task-completed' : 'task-pending'">
-            {{newTask.completed ? 'finished' : 'pending'}}
-          </span>
+        {{task._id}}
+      </div>
+      <div class="col-3">
+        {{task.description}}
+      </div>
+      <div class="col-1">
+        <span *ngIf="task.completed" class="material-icons">done</span>
+        <span *ngIf="!task.completed" class="material-icons" role="button">assignment_late</span>
+      </div>
+      <div class="col-1">
+        <span class="material-icons icon-edit" role="button" (click)="setEditingTask(task)">edit</span>
       </div>
     </div>
   </div>
 
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 
-  <div *ngFor="let task of tasks">
-    {{task.description}}
-    {{task.completed ? 'done' : 'pending'}}
-  </div>
+
+
+  
 
 </div>
 
