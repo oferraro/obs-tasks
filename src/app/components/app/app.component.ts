@@ -62,19 +62,21 @@ export class AppComponent implements OnInit {
     }
 
     addTask() {
-        this.taskService.addTask(this.owner, this.newTask).subscribe((response: AddTaskResponse) => {
+        this.taskService.addTask(this.owner, this.newTask).subscribe(() => {
             this.fetchTasks(); // using push the new task can be manually added but for been completely sure, could be better fetch them again
         });
     }
 
     editTask() {
-        this.taskService.editTask(this.owner, this.newTask).subscribe((response: AddTaskResponse) => {
-            this.fetchTasks(); // using push the new task can be manually added but for been completely sure, could be better fetch them again
+        this.taskService.editTask(this.owner, this.newTask).subscribe(() => {
+            this.fetchTasks();
         })
     }
 
     deleteTask(task: Task) {
-
+        this.taskService.deleteTask(task).subscribe(() => {
+            this.fetchTasks();
+        });
     }
 
     setCreatingTask() {

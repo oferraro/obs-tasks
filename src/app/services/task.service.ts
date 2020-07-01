@@ -20,15 +20,18 @@ export class TaskService {
             .get<Task[]>(this.API_URL + owner);
     }
 
-    addTask(owner: number, task: Task) {
+    addTask(owner: number, task: Task): Observable<any> {
         return this.httpClient.post(this.API_URL + owner, task);
     }
 
-    editTask(owner: number, task: Task) {
+    editTask(owner: number, task: Task): Observable<any> {
         return this.httpClient.patch(this.API_URL + task._id, {
             description: task.description,
             completed: task.completed
         });
     }
 
+    deleteTask(task: Task): Observable<any> {
+        return this.httpClient.delete(this.API_URL + task._id, {});
+    }
 }
