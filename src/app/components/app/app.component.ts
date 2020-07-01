@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AddTaskResponse, emptyTask, Task, taskTypes} from "src/app/models/interfaces";
 import {TaskService} from "src/app/services/task.service";
+import {AModalComponent} from "src/app/components/a-modal/a-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Observable, of} from "rxjs";
 
 @Component({
     selector: 'app-root',
@@ -17,9 +20,11 @@ export class AppComponent implements OnInit {
     loading: boolean = false;
     taskTypesList = [];
     error: string = '';
+    deletingTask: Task = undefined;
 
     constructor(
         private taskService: TaskService,
+        private modalService: NgbModal,
     ) {
     }
 
@@ -76,11 +81,23 @@ export class AppComponent implements OnInit {
         })
     }
 
+    confirmation(confirmation: boolean) {
+        if (confirmation) {
+            this.taskService.deleteTask(this.deletingTask).subscribe(() => {
+                this.fetchTasks();
+                this.newTask = undefined;
+            });
+        }
+        this.deletingTask = undefined;
+        this.modalService.dismissAll();
+    }
+
     deleteTask(task: Task) {
-        this.taskService.deleteTask(task).subscribe(() => {
-            this.fetchTasks();
-            this.newTask = undefined;
-        });
+        this.deletingTask = task;
+        const modalRef = this.modalService.open(AModalComponent);
+        modalRef.componentInstance.modal_title = 'Delete confirmation';
+        modalRef.componentInstance.modal_content = `Do you confirm deleting task ${task._id}?`;
+        modalRef.componentInstance.confirmation = this.confirmation.bind(this);
     }
 
     setCreatingTask() {

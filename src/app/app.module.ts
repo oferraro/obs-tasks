@@ -7,10 +7,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AModalComponent } from './components/a-modal/a-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AModalComponent,
+  ],
+  entryComponents:[
+    AModalComponent,
   ],
   imports: [
     BrowserModule,
