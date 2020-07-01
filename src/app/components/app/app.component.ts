@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AddTaskResponse, emptyTask, Task, taskTypes} from "src/app/models/interfaces";
+import {emptyTask, Task, taskTypes} from "src/app/models/interfaces";
 import {TaskService} from "src/app/services/task.service";
 import {AModalComponent} from "src/app/components/a-modal/a-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {Observable, of} from "rxjs";
 
 @Component({
     selector: 'app-root',
